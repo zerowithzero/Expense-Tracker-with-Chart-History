@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker with Budget Alerts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        
+        <div class="summary">
+            <div class="balance">
+                <h3>Balance</h3>
+                <p id="balance">$0.00</p>
+            </div>
+            <div class="income">
+                <h3>Income</h3>
+                <p id="income">$0.00</p>
+            </div>
+            <div class="expense">
+                <h3>Expenses</h3>
+                <p id="expense">$0.00</p>
+            </div>
+        </div>
+
+        <div class="budget-section">
+            <h2>Set Budget Limits</h2>
+            <div class="budget-inputs">
+                <div>
+                    <label for="food-budget">Food:</label>
+                    <input type="number" id="food-budget" placeholder="Enter budget">
+                </div>
+                <div>
+                    <label for="rent-budget">Rent:</label>
+                    <input type="number" id="rent-budget" placeholder="Enter budget">
+                </div>
+                <div>
+                    <label for="entertainment-budget">Entertainment:</label>
+                    <input type="number" id="entertainment-budget" placeholder="Enter budget">
+                </div>
+                <div>
+                    <label for="other-budget">Other:</label>
+                    <input type="number" id="other-budget" placeholder="Enter budget">
+                </div>
+                <button id="save-budgets">Save Budgets</button>
+            </div>
+        </div>
+
+        <div class="transaction-form">
+            <h2>Add Transaction</h2>
+            <form id="transaction-form">
+                <div>
+                    <label for="type">Type:</label>
+                    <select id="type" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="food">Food</option>
+                        <option value="rent">Rent</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" required>
+                </div>
+                <div>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <button type="submit">Add Transaction</button>
+            </form>
+        </div>
+
+        <div class="charts">
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </div>
+
+        <div class="transactions">
+            <h2>Transaction History</h2>
+            <div class="filters">
+                <select id="filter-type">
+                    <option value="all">All Transactions</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expenses</option>
+                </select>
+                <select id="filter-category">
+                    <option value="all">All Categories</option>
+                    <option value="food">Food</option>
+                    <option value="rent">Rent</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="other">Other</option>
+                </select>
+                <select id="filter-month">
+                    <option value="all">All Months</option>
+                    <!-- Months will be populated by JS -->
+                </select>
+            </div>
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-list">
+                    <!-- Transactions will be added here by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Budget Alert</h2>
+            <p id="alert-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
